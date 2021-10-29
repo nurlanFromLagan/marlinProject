@@ -12,7 +12,7 @@ $password = $_POST['password'];
 $pdo = new PDO('mysql:dbname=marlinproject;host=localhost', 'root', '');
 $user = get_user_by_email($email, $pdo);
 
-if ($user === false) {
+if ($user == false) {
     add_user($email, $password, $pdo);
     set_flash_message('message', 'success');
     redirect_to('view/page_login.php');

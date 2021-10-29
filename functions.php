@@ -1,7 +1,7 @@
 <?php
 
 function get_user_by_email ($email, $pdo) {
-    $sth = $pdo->prepare("SELECT * FROM registration WHERE userEmail=:userEmail");
+    $sth = $pdo->prepare("SELECT * FROM users WHERE userEmail=:userEmail");
     $sth->bindParam(":userEmail", $email);
     $sth->execute();
 
@@ -12,7 +12,7 @@ function get_user_by_email ($email, $pdo) {
 
 
 function add_user ($email, $password, $pdo) {
-    $sth = $pdo->prepare("INSERT INTO `registration` SET `userEmail` = :userEmail, `userPassword` = :userPassword");
+    $sth = $pdo->prepare("INSERT INTO `users` SET `userEmail` = :userEmail, `userPassword` = :userPassword");
     $sth->execute(array('userEmail' => $email, 'userPassword' => $password));
 
 }
@@ -44,14 +44,44 @@ function login ($email, $password, $pdo) {
         return false;
     }
 
+    $userEmail = $user['userEmail'];
     $userPassword = $user['userPassword'];
 
     if ($userPassword == $password) {
+        $_SESSION['isAuth'] = true;
+        $_SESSION['email'] = $userEmail;
         return true;
     }
     return false;
 }
 
+
+function isAuth() {
+    if (isset($_SESSION["isAuth"])) {
+        return $_SESSION["isAuth"];
+    }
+    else return false;
+}
+
+function isAdmin ($email, $pdo) {
+    $user = get_user_by_email($email, $pdo);
+    $role = $user['role'];
+
+    if ($role == 1) {
+        return true;
+    }
+    return false;
+}
+
+
+function getAllUsers ($pdo) {
+
+    $sth = $pdo->prepare("SELECT * FROM `users` ORDER BY `userId`, `userEmail`, `userPassword`, `name`, `job`, `phone`, `adress`, `status`, `avatar`, `role`");
+    $sth->execute();
+    $array = $sth->fetchAll(PDO::FETCH_ASSOC);
+
+    return $array;
+}
 
 
 
