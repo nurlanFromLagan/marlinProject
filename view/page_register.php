@@ -1,3 +1,6 @@
+<?php session_start() ?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -59,7 +62,16 @@
                             </div>
                             <div class="col-xl-6 ml-auto mr-auto">
                                 <div class="card p-4 rounded-plus bg-faded">
-                                    <form id="js-login" novalidate="" action="../sender.php" method="post">
+
+                                    <?php  if ($_SESSION['message'] === 'fail'): ?>
+                                    <div class="alert alert-danger text-dark" role="alert">
+                                        <strong>Уведомление!</strong> Этот эл. адрес уже занят другим пользователем.
+                                    </div>
+                                    <?php unset($_SESSION['message']);
+                                          endif ?>
+
+
+                                    <form id="js-login" novalidate="" action="../registrationHandler.php" method="post">
                                         <div class="form-group">
                                             <label class="form-label" for="emailverify">Email</label>
                                             <input type="email" id="emailverify" class="form-control" placeholder="Эл. адрес" name="email" required>

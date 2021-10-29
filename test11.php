@@ -1,21 +1,9 @@
 <?php
 
-require 'DB/Connection.php';
-require 'DB/QueryBuilder.php';
+session_start();
 
-use DB\query\Connection;
-use DB\query\QueryBuilder;
+$_SESSION['message'] = 1;
 
-$email = 'nukd@mm.ru';
-
-$db = new QueryBuilder(Connection::make());
-$m = $db->get_user_email($email);
-
-if ($m === false) {
-    print_r('false result');
-} else {
-    print_r('good');
-}
 
 
 
