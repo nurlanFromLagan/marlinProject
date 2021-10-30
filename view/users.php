@@ -3,7 +3,6 @@
 require '../functions.php';
 session_start();
 
-var_dump($_SESSION['users']);
 ?>
 
 <!DOCTYPE html>
@@ -42,9 +41,20 @@ var_dump($_SESSION['users']);
         </nav>
 
         <main id="js-page-content" role="main" class="page-content mt-3">
+
+            <!--Вывожу сообщение "Пользователь успешно добавлен!", если админ добавил нового пользователя-->
+            <?php if (isset($_SESSION['message'])): ?>
             <div class="alert alert-success">
-                Профиль успешно обновлен.
+                <?php display_flash_message('message'); ?>
             </div>
+
+            <?php else: ?>
+                <div class="alert alert-success">
+                    Профиль успешно обновлен.
+                </div>
+
+            <?php endif; ?>
+
             <div class="subheader">
                 <h1 class="subheader-title">
                     <i class='subheader-icon fal fa-users'></i> Список пользователей
@@ -53,8 +63,9 @@ var_dump($_SESSION['users']);
             <div class="row">
                 <div class="col-xl-12">
 
+                    <!--Если пользователь админ, то у него высветится кнопка "Добавить"-->
                     <?php if ($_SESSION['admin'] === true): ?>
-                    <a class="btn btn-success" href="create_user.html">Добавить</a>
+                    <a class="btn btn-success" href="create_user.php">Добавить</a>
                     <?php endif ?>
 
                     <div class="border-faded bg-faded p-3 mb-g d-flex mt-3">
@@ -94,7 +105,8 @@ var_dump($_SESSION['users']);
                                         <?php endif; ?>
                                     </a>
 
-                                    <!--Проверка на админа или текущего польщователя-->
+                                    <!--Проверка на админа или текущего польщователя.-->
+                                    <!--Если это админ, то выпадающее меню высветится у всего списка юзеров, а если обычный пользователь, то только меню его профиля.-->
                                     <?php if ($_SESSION['admin'] === true OR $_SESSION['currentUser'] == $user['userEmail']): ?>
                                     <div class="dropdown-menu">
                                         <a class="dropdown-item" href="edit.html">
@@ -136,13 +148,13 @@ var_dump($_SESSION['users']);
                                 <address class="fs-sm fw-400 mt-4 text-muted">
                                     <i class="fas fa-map-pin mr-2"></i> <?php echo $user['adress'] ?></address> <!--адрес-->
                                 <div class="d-flex flex-row">
-                                    <a href="javascript:void(0);" class="mr-2 fs-xxl" style="color:#4680C2">
+                                    <a href="<?php echo $user['vkontakte'] ?>" class="mr-2 fs-xxl" style="color:#4680C2">
                                         <i class="fab fa-vk"></i>
                                     </a>
-                                    <a href="javascript:void(0);" class="mr-2 fs-xxl" style="color:#38A1F3">
+                                    <a href="<?php echo $user['telegram'] ?>" class="mr-2 fs-xxl" style="color:#38A1F3">
                                         <i class="fab fa-telegram"></i>
                                     </a>
-                                    <a href="javascript:void(0);" class="mr-2 fs-xxl" style="color:#E1306C">
+                                    <a href="<?php echo $user['instagram'] ?>" class="mr-2 fs-xxl" style="color:#E1306C">
                                         <i class="fab fa-instagram"></i>
                                     </a>
                                 </div>
@@ -152,7 +164,7 @@ var_dump($_SESSION['users']);
                 </div>
                 <?php endforeach; ?>
 
-
+                <!--Оставил одну карточку пользователя из оригинальной верстки для понимания некоторых моментов-->
                 <div class="col-xl-4">
                     <div id="c_8" class="card border shadow-0 mb-g shadow-sm-hover" data-filter-tags="arica grace">
                         <div class="card-body border-faded border-top-0 border-left-0 border-right-0 rounded-top">
