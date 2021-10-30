@@ -1,8 +1,16 @@
+<?php
+require '../functions.php';
+session_start();
+
+$id = $_GET['id'];
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Безопаность</title>
+    <title>Document</title>
     <meta name="description" content="Chartist.html">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no, user-scalable=no, minimal-ui">
@@ -34,48 +42,54 @@
     <main id="js-page-content" role="main" class="page-content mt-3">
         <div class="subheader">
             <h1 class="subheader-title">
-                <i class='subheader-icon fal fa-lock'></i> Безопасность
+                <i class='subheader-icon fal fa-plus-circle'></i> Редактировать
             </h1>
 
         </div>
-        <form action="">
+
+        <?php  $elem = $_SESSION['user']; ?>
+        <form action="../editUser.php?id=<?php echo $elem['userId'];?>" method="post">
             <div class="row">
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">
                         <div class="panel-container">
                             <div class="panel-hdr">
-                                <h2>Обновление эл. адреса и пароля</h2>
+                                <h2>Общая информация</h2>
                             </div>
                             <div class="panel-content">
-                                <!-- email -->
+                                <!-- username -->
                                 <div class="form-group">
-                                    <label class="form-label" for="simpleinput">Email</label>
-                                    <input type="text" id="simpleinput" class="form-control" value="john@example.com">
+                                    <label class="form-label" for="simpleinput">Имя</label>
+                                    <input type="text" id="simpleinput" class="form-control" name="name" value="<?php echo $elem['name']; ?>">
                                 </div>
 
-                                <!-- password -->
+                                <!-- title -->
                                 <div class="form-group">
-                                    <label class="form-label" for="simpleinput">Пароль</label>
-                                    <input type="password" id="simpleinput" class="form-control">
+                                    <label class="form-label" for="simpleinput">Место работы</label>
+                                    <input type="text" id="simpleinput" class="form-control" name="job" value="<?php echo $elem['job']; ?>">
                                 </div>
 
-                                <!-- password confirmation-->
+                                <!-- tel -->
                                 <div class="form-group">
-                                    <label class="form-label" for="simpleinput">Подтверждение пароля</label>
-                                    <input type="password" id="simpleinput" class="form-control">
+                                    <label class="form-label" for="simpleinput">Номер телефона</label>
+                                    <input type="text" id="simpleinput" class="form-control" name="phone" value="<?php echo $elem['phone']; ?>">
                                 </div>
 
-
+                                <!-- address -->
+                                <div class="form-group">
+                                    <label class="form-label" for="simpleinput">Адрес</label>
+                                    <input type="text" id="simpleinput" class="form-control" name="adress" value="<?php echo $elem['adress']; ?>">
+                                </div>
                                 <div class="col-md-12 mt-3 d-flex flex-row-reverse">
-                                    <button class="btn btn-warning">Изменить</button>
+                                    <button class="btn btn-warning">Редактировать</button>
                                 </div>
                             </div>
                         </div>
-                        
                     </div>
                 </div>
             </div>
         </form>
+
     </main>
 
     <script src="js/vendors.bundle.js"></script>

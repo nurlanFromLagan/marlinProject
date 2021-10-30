@@ -99,10 +99,32 @@ function addUserByAdmin ($pdo, $email, $password, $name, $job, $phone, $adress) 
 }
 
 
+//функция возвращает данные пользователя по id (id в бд)
+function getUserById ($id, $pdo) {
+
+    $sth = $pdo->prepare("SELECT * FROM users WHERE userId=:userId");
+    $sth->bindParam(":userId", $id);
+    $sth->execute();
+
+    $user = $sth->fetch(PDO::FETCH_ASSOC);
+
+    return $user;
+}
 
 
+//функция для изменения данных Редактировать:Общая информация
+function edit ($pdo, $name, $job, $phone, $adress, $id) {
 
+    $sth = $pdo->prepare("UPDATE `users` SET `name` = :name, `job` = :job, `phone` = :phone, `adress` = :adress WHERE `userId` = :userId");
+    $sth->execute(array('name' => $name, 'job' => $job, 'phone' => $phone, 'adress' => $adress, 'userId' => $id));
+}
 
+//функция для изменения данных в Безопасность
+function editSecurity ($pdo, $email, $password,  $id) {
+
+    $sth = $pdo->prepare("UPDATE `users` SET `email` = :email, `password` = :password WHERE `userId` = :userId");
+    $sth->execute(array('emailUser' => $email, 'userPassword' => $password, 'userId' => $id));
+}
 
 
 

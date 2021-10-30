@@ -40,6 +40,7 @@ session_start();
     </nav>
     <main id="js-page-content" role="main" class="page-content mt-3">
 
+        <!-- Если пользователь уже существует, то выведет сообщение. (когда пользователя добавляет Админ) -->
         <?php if (isset($_SESSION['message'])): ?>
         <div class="alert alert-danger text-dark">
             <?php display_flash_message('message'); ?>

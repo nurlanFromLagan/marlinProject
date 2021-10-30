@@ -109,10 +109,10 @@ session_start();
                                     <!--Если это админ, то выпадающее меню высветится у всего списка юзеров, а если обычный пользователь, то только меню его профиля.-->
                                     <?php if ($_SESSION['admin'] === true OR $_SESSION['currentUser'] == $user['userEmail']): ?>
                                     <div class="dropdown-menu">
-                                        <a class="dropdown-item" href="edit.html">
+                                        <a class="dropdown-item" href="../editMain.php?num=1&id=<?php echo $user['userId'] ?>">
                                             <i class="fa fa-edit"></i>
                                         Редактировать</a>
-                                        <a class="dropdown-item" href="security.html">
+                                        <a class="dropdown-item" href="../editMain.php?num=2&id=<?php echo $user['userId'] ?>">
                                             <i class="fa fa-lock"></i>
                                         Безопасность</a>
                                         <a class="dropdown-item" href="status.html">

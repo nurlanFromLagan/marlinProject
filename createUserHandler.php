@@ -29,6 +29,7 @@ if (get_user_by_email($email, $pdo)) {
 //Добаляю пользователя от имени админа
 addUserByAdmin($pdo, $email, $password, $name, $job, $phone, $adress);
 $_SESSION['users'] = array_reverse(getAllUsers($pdo)); //массив со всеми пользователями в обратном порядке, чтобы новый пользователь в списке пользвателей появился первым сверху
+$_SESSION['user'] = get_user_by_email($email, $pdo); //массив с данными текущего пользователя
 set_flash_message('message', 'Пользователь успешно добавлен!');
 redirect_to("view/users.php");
 
