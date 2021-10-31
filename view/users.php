@@ -42,7 +42,7 @@ session_start();
 
         <main id="js-page-content" role="main" class="page-content mt-3">
 
-            <!--Вывожу сообщение "Пользователь успешно добавлен!", если админ добавил нового пользователя-->
+            <!--Вывожу сообщение "Профиль успешно обновлен!" или "Пользователь успешно добавлен!", если админ добавил нового пользователя-->
             <?php if (isset($_SESSION['message'])): ?>
             <div class="alert alert-success">
                 <?php display_flash_message('message'); ?>

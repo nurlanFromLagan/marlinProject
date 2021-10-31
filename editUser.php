@@ -16,6 +16,7 @@ $pdo = new PDO('mysql:dbname=marlinproject;host=localhost', 'root', '');
 edit($pdo, $name, $job, $phone, $adress, $id);//изменяю данные в бд
 
 $_SESSION['users'] = array_reverse(getAllUsers($pdo)); //массив со всеми пользователями в обратном порядке
+set_flash_message('message', 'Профиль успешно обновлен');
 redirect_to('view/users.php');
 
 
