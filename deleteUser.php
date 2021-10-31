@@ -9,7 +9,7 @@ $id = $_GET['id'];
 $pdo = new PDO('mysql:dbname=marlinproject;host=localhost', 'root', '');
 $user = getUserById($id, $pdo);
 
-deleteUserBuId($pdo, $id);//удаляю пользователя
+deleteUserById($pdo, $id);//удаляю пользователя
 
 //если пользователь не админ, то после удаления профиля он переходит на страницу авторизации
 if (!$_SESSION['admin']) {

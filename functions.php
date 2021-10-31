@@ -146,7 +146,7 @@ function changeEmailById ($pdo, $id, $email) {
 
 
 //ф-я для удаления пользователя
-function deleteUserBuId ($pdo, $id) {
+function deleteUserById ($pdo, $id) {
 
     $sth = $pdo->prepare("DELETE FROM `users` WHERE `userId` = :userId");
     $sth->execute(array('userId' => $id));
