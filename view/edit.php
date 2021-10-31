@@ -47,7 +47,7 @@ $id = $_GET['id'];
 
         </div>
 
-        <?php  $elem = $_SESSION['user']; ?>
+        <?php  $elem = $_SESSION['user']; ?> <!-- получаю данные о пользователе из сессии -->
         <form action="../editUser.php?id=<?php echo $elem['userId'];?>" method="post">
             <div class="row">
                 <div class="col-xl-6">

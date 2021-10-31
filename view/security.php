@@ -42,11 +42,19 @@ $id = $_GET['id'];
     </nav>
     <main id="js-page-content" role="main" class="page-content mt-3">
         <div class="subheader">
+
             <h1 class="subheader-title">
                 <i class='subheader-icon fal fa-lock'></i> Безопасность
             </h1>
 
         </div>
+
+        <!--Вывожу сообщение 'Пользователь с таким email уже существует'-->
+        <?php if (isset($_SESSION['security'])): ?>
+            <div class="alert alert-danger text-dark">
+                <?php display_flash_message('security'); ?>
+            </div>
+        <?php endif; ?>
 
         <?php  $elem = $_SESSION['user']; ?>
         <form action="../editSecurity.php?id=<?php echo $elem['userId'];?>" method="post">

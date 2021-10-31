@@ -15,6 +15,7 @@ $num = $_GET['num'];
 
 $pdo = new PDO('mysql:dbname=marlinproject;host=localhost', 'root', '');
 
+//загружаю в сессию данные о пользователе
 $_SESSION['user'] = getUserById($id, $pdo);
 
 

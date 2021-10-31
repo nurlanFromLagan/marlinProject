@@ -83,7 +83,7 @@ function isAdmin ($email, $pdo) {
 //функция для получения всех пользователей из БД
 function getAllUsers ($pdo) {
 
-    $sth = $pdo->prepare("SELECT * FROM `users` ORDER BY `userId`, `userEmail`, `userPassword`, `name`, `job`, `phone`, `adress`, `status`, `avatar`, `role`");
+    $sth = $pdo->prepare("SELECT * FROM `users` ORDER BY `userId`");
     $sth->execute();
     $array = $sth->fetchAll(PDO::FETCH_ASSOC);
 
@@ -119,12 +119,37 @@ function edit ($pdo, $name, $job, $phone, $adress, $id) {
     $sth->execute(array('name' => $name, 'job' => $job, 'phone' => $phone, 'adress' => $adress, 'userId' => $id));
 }
 
-//функция для изменения данных в Безопасность
-function editSecurity ($pdo, $email, $password,  $id) {
 
-    $sth = $pdo->prepare("UPDATE `users` SET `email` = :email, `password` = :password WHERE `userId` = :userId");
-    $sth->execute(array('emailUser' => $email, 'userPassword' => $password, 'userId' => $id));
+//функция для изменения данных в Безопасность
+//function editSecurity ($pdo, $email, $password,  $id) {
+//
+//    $sth = $pdo->prepare("UPDATE `users` SET `email` = :email, `password` = :password WHERE `userId` = :userId");
+//    $sth->execute(array('emailUser' => $email, 'userPassword' => $password, 'userId' => $id));
+//}
+
+
+
+//ф-я для изменения пароля по id
+function changePasswordById ($pdo, $id, $password) {
+
+    $sth = $pdo->prepare("UPDATE `users` SET `userPassword` = :userPassword WHERE `userId` = :userId");
+    $sth->execute(array('userPassword' => $password, 'userId' => $id));
 }
 
+
+//ф-я для изменения email по id
+function changeEmailById ($pdo, $id, $email) {
+
+    $sth = $pdo->prepare("UPDATE `users` SET `userEmail` = :userEmail WHERE `userId` = :userId");
+    $sth->execute(array('userEmail' => $email, 'userId' => $id));
+}
+
+
+//ф-я для удаления пользователя
+function deleteUserBuId ($pdo, $id) {
+
+    $sth = $pdo->prepare("DELETE FROM `users` WHERE `userId` = :userId");
+    $sth->execute(array('userId' => $id));
+}
 
 

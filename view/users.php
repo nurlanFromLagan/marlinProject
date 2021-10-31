@@ -48,9 +48,10 @@ session_start();
                 <?php display_flash_message('message'); ?>
             </div>
 
-            <?php else: ?>
+            <!--Вывожу сообщение "Пользователь успешно удален!"-->
+            <?php elseif($_SESSION['delete']): ?>
                 <div class="alert alert-success">
-                    Профиль успешно обновлен.
+                    <?php display_flash_message('delete'); ?>
                 </div>
 
             <?php endif; ?>
@@ -122,7 +123,7 @@ session_start();
                                             <i class="fa fa-camera"></i>
                                             Загрузить аватар
                                         </a>
-                                        <a href="#" class="dropdown-item" onclick="return confirm('are you sure?');">
+                                        <a href="../deleteUser.php?num=3&id=<?php echo $user['userId'] ?>" class="dropdown-item" onclick="return confirm('are you sure?');">
                                             <i class="fa fa-window-close"></i>
                                             Удалить
                                         </a>
