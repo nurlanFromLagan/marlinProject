@@ -1,3 +1,12 @@
+<?php
+require '../functions.php';
+session_start();
+
+print_r($_SESSION['images']);
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,7 +47,7 @@
             </h1>
 
         </div>
-        <form action="">
+        <form action="../test11.php" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">
@@ -48,12 +57,12 @@
                             </div>
                             <div class="panel-content">
                                 <div class="form-group">
-                                    <img src="img/demo/authors/josh.png" alt="" class="img-responsive" width="200">
+                                    <img src="../images/avatar-b.png" alt="" class="img-responsive" width="200">
                                 </div>
 
                                 <div class="form-group">
                                     <label class="form-label" for="example-fileinput">Выберите аватар</label>
-                                    <input type="file" id="example-fileinput" class="form-control-file">
+                                    <input type="file" name="image" id="example-fileinput" class="form-control-file">
                                 </div>
 
 
