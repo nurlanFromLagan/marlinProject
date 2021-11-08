@@ -2,8 +2,7 @@
 require '../functions.php';
 session_start();
 
-print_r($_SESSION['images']);
-
+$user = $_SESSION['user'];
 ?>
 
 
@@ -27,7 +26,7 @@ print_r($_SESSION['images']);
         <div class="collapse navbar-collapse" id="navbarColor02">
             <ul class="navbar-nav mr-auto">
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Главная <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="users.php">Главная <span class="sr-only">(current)</span></a>
                 </li>
             </ul>
             <ul class="navbar-nav ml-auto">
@@ -47,7 +46,7 @@ print_r($_SESSION['images']);
             </h1>
 
         </div>
-        <form action="../test11.php" method="post" enctype="multipart/form-data">
+        <form action="../editMedia.php" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">
@@ -57,7 +56,7 @@ print_r($_SESSION['images']);
                             </div>
                             <div class="panel-content">
                                 <div class="form-group">
-                                    <img src="../images/avatar-b.png" alt="" class="img-responsive" width="200">
+                                    <img src="../images/<?php echo $user['avatar']; ?>" alt="" class="img-responsive" width="200">
                                 </div>
 
                                 <div class="form-group">

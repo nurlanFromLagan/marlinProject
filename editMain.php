@@ -23,6 +23,8 @@ if ($num == 1) {
     redirect_to('view/edit.php');
 } elseif ($num == 2) {
     redirect_to('view/security.php');
+} elseif ($num == 3) {
+    redirect_to('view/media.php');
 }
 
 

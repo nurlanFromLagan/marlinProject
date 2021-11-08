@@ -55,7 +55,7 @@ session_start();
 
 
         </div>
-        <form action="../test22.php" method="post" enctype="multipart/form-data">
+        <form action="../createUserHandler.php" method="post" enctype="multipart/form-data">
             <div class="row">
                 <div class="col-xl-6">
                     <div id="panel-1" class="panel">

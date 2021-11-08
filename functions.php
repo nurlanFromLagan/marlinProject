@@ -153,3 +153,11 @@ function deleteUserById ($pdo, $id) {
 }
 
 
+//ф-я для загрузки аватара
+function uploadImage ($pdo, $id, $image) {
+
+    $sth = $pdo->prepare("UPDATE `users` SET `avatar` = :avatar WHERE `userId` = :userId");
+    $sth->execute(array('avatar' => $image, 'userId' => $id));
+}
+
+
